@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
     def log_in 
         user = current_user
+        # user = User.find_by(email: params[:email])
         if user && user.authenticate(params[:password])
             render json: { first_name: user.first_name, token: issue_token({ id: user.id })}
         else
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
             render json: user.products, except: [ :updated_at, :created_at]
         else
             render json: { error: "Invalid token"}, status: 400
+        end
     end
 
     private
@@ -49,4 +51,5 @@ class UsersController < ApplicationController
     def user_params
         params.permit(:first_name, :last_name, :email, :password)
     end
+
 end
