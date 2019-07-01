@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post '/log_in', to: 'users#log_in'
   get '/inventory', to: 'users#inventory'
   get '/validate', to: 'users#validate'
+  delete '/delete', to: 'user_products#delete_product'
 
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
