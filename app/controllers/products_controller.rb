@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
         product = Product.find_or_create_by(track_params)
         if product
             user = User.find_by(email: params[:email])
-            UserProduct.create(user_id: user.id, product_id: product.id)
+            UserProduct.find_or_create_by(user_id: user.id, product_id: product.id)
             render json: product
         else 
             render json: { errors: product.errors.full_messages }, status: 404
